@@ -5,11 +5,14 @@ buildscript {
 
 	dependencies {
 		classpath 'com.bmuschko:gradle-tomcat-plugin:2.2.5'
+		classpath 'com.bmuschko:gradle-clover-plugin:2.0.1'
+
 	}
 }
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'com.bmuschko.tomcat'
+apply plugin: 'com.bmuschko.clover'
 
 // JDK 7
 sourceCompatibility = 1.7
@@ -27,6 +30,7 @@ dependencies {
 	compile 'javax.servlet:jstl:1.2'
 	testCompile 'org.springframework:spring-test:4.1.4.RELEASE'
 	testCompile 'org.testng:testng:6.1.1'
+	clover 'com.cenqua.clover:clover:3.2.0'
 
 	def tomcatVersion = '7.0.59'
 	tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
@@ -39,4 +43,11 @@ test {
 	// enable TestNG support (default is JUnit)
 	ext.testSrcDirs = project.sourceSets.test.java.srcDirs
 	useTestNG()
+}
+
+clover {
+	report {
+		html = true
+		pdf = true
+	}
 }
