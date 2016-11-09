@@ -46,11 +46,12 @@ task wrapper(type: Wrapper) {
 test {
 	// enable TestNG support (default is JUnit)
 	ext.testSrcDirs = project.sourceSets.test.java.srcDirs
-	useTestNG()
+	useTestNG(){
+		useDefaultListeners = true
+	}
 }
 
 clover {
-	licenseLocation = '/opt/data/clover.license'
 	report {
 		html = true
 		pdf = true
