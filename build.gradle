@@ -52,6 +52,7 @@ test {
 }
 
 clover {
+	licenseLocation = '/opt/data/clover.license'
 	report {
 		html = true
 		pdf = true
